@@ -1,0 +1,74 @@
+
+
+	/* 
+	Generic Styling, for Desktops/Laptops 
+	*/
+	table { 
+		width: 100%; 
+		border-collapse: collapse; 
+	}
+	
+	.margenpeque{
+	
+	   width: 70%; 
+	   margin: auto;
+	   }
+	   
+	   .margengrande{
+	
+	   width: 100%; 
+	   margin: auto;
+	   float: left;
+	   }
+
+	    .margengrande a:hover{
+	
+	   color: #0a6b89;
+	   font-weight: bold;
+	   }
+	   .margennotas{
+	   	width: 100%;
+	   	float: left;
+	   	
+	   }
+
+	   	.margencentrada{
+	
+	    width: 100%; 
+	    margin: auto;
+	    
+	   }
+	
+
+	/* Zebra striping */
+	tr:nth-of-type(odd) { 
+		background: #e8e8e8; 
+	}
+
+		tr:nth-of-type(even) { 
+		background: white; 
+	}
+	th { 
+		background: #4EB8DD; 
+		color: white; 
+		font-weight: bold;
+	}
+	td, th { 
+		padding: 6px; 
+		border: 1px solid #ccc; 
+		text-align: left; 
+
+
+	}
+
+	td{    
+
+		color: #424242;
+		
+	}
+	
+	
+	
+
+	
+	

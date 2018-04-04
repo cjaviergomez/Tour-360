@@ -1,0 +1,12 @@
+button registrarBtn;
+
+ahora en onCreate
+
+ registrarBtn = (Button) finViewById(R.id.registrarBtn);
+ 
+ 
+ 
+ 
+ 
+ 
+ registrarBtnen setOnClickListener

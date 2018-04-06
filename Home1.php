@@ -16,7 +16,6 @@ if ($_SESSION["nombre"]==""){
 
 }
 
-$idproyecto = $_GET["id"];
 
 ?>
 
@@ -210,7 +209,7 @@ $idproyecto = $_GET["id"];
         
           });
    
-    var  markId=0,polyId=0,LineId=0;
+    var  markId=1,polyId=1,LineId=1;
     
 
 
@@ -235,13 +234,6 @@ $idproyecto = $_GET["id"];
             newMarker.content =form;
             newMarker.setLabel("marker#:"+markId);
             newMarker.id="marcador:"+markId;
-            
-              
-          infowindow.setContent(newMarker.content);
-            infowindow.open(map,newMarker);
-              
-            
-          
         var markerLi =document.createElement("div");
             markerLi.innerHTML="marcador número:"+markId;
             markerLi.className="listaLi";
@@ -262,14 +254,10 @@ $idproyecto = $_GET["id"];
             eliminaActive("acti");
             
             this.className += " acti";
-            
                 
             
             });
-          
-          
-      
-     
+                
             //map.setCenter{lat:capas[aux][0][]}    
         
         google.maps.event.addListener(newMarker, 'click', function() {
@@ -277,7 +265,6 @@ $idproyecto = $_GET["id"];
           infowindow.open(map, this);
               
         });
-          
         capas[aux]['0'].push(newMarker);
         document.getElementById("check:"+aux).checked=true;  
         document.getElementById("lista:"+aux).appendChild(markerLi);
@@ -371,13 +358,6 @@ $idproyecto = $_GET["id"];
         }
 
         
-$(document).ready(function(){
-  $('body capD').on('click', 'input', function(){
-    alert($(this).attr('id'))
-  })
-})
-        
-        
         
         /*
 Funcion que crea las capas
@@ -392,36 +372,37 @@ function nuevCapa(capa){
     var insideDiv = document.createElement('div');
        insideDiv.classList.add("cap");
         insideDiv.className+=" active";
-                    
-        
+        insideDiv.addEventListener("click", function() {
+            
+            if ( document.getElementById("check:"+this.id.split(":")[1]).checked==false && aux!=this.id.split(":")[1]){
+                
+                aux=parseInt(this.id.split(":")[1]);
+            //document.getElementById("check:"+this.id.split(":")[1]).checked=true;  // Aun en reparo
+                
+            
+                eliminaActive("active");
+                
+                this.className += " active";
+                
+            }
+            
+  });
+
+   
+ 
     idAux = asignarId(Object.keys(capas));
     aux=idAux;
     
         
     
-    insideDiv.id="cap:"+idAux; //ID de la capa
+          insideDiv.id="cap:"+idAux;
         
         
         
-    insideDiv.tabIndex='0';
-    insideDiv.focus();
+        insideDiv.tabIndex='0';
+        insideDiv.focus();
         
-    insideDiv.onclick=function f(insideDiv){
-        
-        if(document.getElementById("check:"+this.id.split(":")[1])!=null && document.getElementById("check:"+this.id.split(":")[1]).checked==true){ 
-            
-               
-                eliminaActive("active");
-                this.className += " active";     
-                aux=parseInt(this.id.split(":")[1]);
-            
-            }
-        else{
-            
-            
-            
-        }
-    };
+        insideDiv.onclick=function f(insideDiv){if(document.getElementById("check:"+this.id.split(":")[1])!=null && document.getElementById("check:"+this.id.split(":")[1]).checked==true){ aux=parseInt(this.id.split(":")[1]);}}
         
 
 
@@ -440,14 +421,7 @@ function nuevCapa(capa){
         checkedNuevo.setAttribute("onclick","muestraCapa(this.checked,this.id)")
      var atributo = document.createElement('label');
         atributo.id="label:"+idAux;
-     atributo.innerHTML="Capa Sin Nombre "+idAux; // Nombre de la capa
-
-     //Aqui trabajamos con Ajax para mandar la informacion de la capa a uno script de php y este se encargue de incluir la información en la DB
-     $.ajax({
-     data: {idcapa : insideDiv.id, nombre: atributo.innerHTML, idproyecto: <?PHP echo $idproyecto ?>},
-     type: "POST",
-     url: "insertacapadb.php"
-    }); 
+     atributo.innerHTML="Capa Sin Nombre "+idAux;
 
 
     var lab = document.createElement('div');
@@ -535,13 +509,6 @@ insideDiv.appendChild(elementoCapa);
                     var nombre;
                     nombre=prompt('Ingrese el nombre de la capa:','');
                     document.getElementById("label:"+cambi).innerHTML=nombre;
-
-                    $.ajax({
-                      data: {idcapa :'cap:'+this.id.split(":")[1], nombre: nombre, idproyecto: <?PHP echo $idproyecto ?>},
-                      type: "POST",
-                      url: "modifcarcapadb.php"
-                    });
-                    
                 }
             var iCambiaNom = document.createElement("i");
                 iCambiaNom.className = "far fa-edit";

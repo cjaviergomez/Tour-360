@@ -1,0 +1,8 @@
+Cambios realizados para la versión 5.2
+
+- Se modificó la base de datos de la aplicación, mas concretamente la tabla "capa". //Se agrega backup de la base de datos.
+- Se eliminó del mapa los tipos del mapas (MapType). 
+- Al eliminar una capa desde la aplicación tambien se elimina en la base de datos.
+- Se elimino el punto de lista al botón de "Nueva capa"
+- Se agregó el nombre del proyecto a la pagina home.
+

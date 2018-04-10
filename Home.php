@@ -215,13 +215,23 @@ $idproyecto = $_GET["id"];
 
 
   /** @constructor */
+          
+          google.maps.event.addListener(map, 'click', function() {
+    infowindow.close();
+  });
+          
  
     google.maps.event.addListener(drawingManager, 'overlaycomplete', function(event) {
       if(event.type == google.maps.drawing.OverlayType.POLYLINE) {
         alert("polyline complete");
+        drawingManager.setDrawingMode(null);  
+        var newPolyLine = event.overlay;   
+            newPolyLine.name="poliLinea"+LineId;
+          
+          
       }
       else if(event.type == google.maps.drawing.OverlayType.MARKER) {
-                   
+          
            form = "<form action=\"maps_form.php\" method=\"post\">"+
             
             "Nombre:<input type=\"text\" name=\"name\" value=\"\" /><br />"+
@@ -231,9 +241,8 @@ $idproyecto = $_GET["id"];
           "</form>";
           
         var newMarker = event.overlay;
-        
+          
             newMarker.content =form;
-            newMarker.setLabel("marker#:"+markId);
             newMarker.id="marcador:"+markId;
             
               
@@ -252,7 +261,7 @@ $idproyecto = $_GET["id"];
                 aux=parseInt(this.parentElement.id.split(":")[1]);
                 
             for (i=0; i<capas[aux][0].length;i++){
-             if(this.id.split(":")[1]==capas[aux][0][i].getLabel().split(":")[1]){
+             if(this.id.split(":")[1]==capas[aux][0][i].id.split(":")[1]){
                  
                  infowindow.setContent(capas[aux][0][i].content);
                  infowindow.open(map,capas[aux][0][i])
@@ -262,6 +271,7 @@ $idproyecto = $_GET["id"];
             eliminaActive("acti");
             
             this.className += " acti";
+            event.stopPropagation();
             
                 
             
@@ -279,12 +289,22 @@ $idproyecto = $_GET["id"];
         });
           
         capas[aux]['0'].push(newMarker);
-        document.getElementById("check:"+aux).checked=true;  
         document.getElementById("lista:"+aux).appendChild(markerLi);
+        drawingManager.setDrawingMode(null);  
+        if(document.getElementById("check:"+aux).checked ==false ){ // para activar la capa en la que se esta agregando puntos.
+            document.getElementById("check:"+aux).checked =true;
+            muestraCapa(true,"marcadorcapa:"+aux);
+        } 
          
-  }    });
+  }    
+    
+    else if (event.type == google.maps.drawing.OverlayType.POLYGON){
+        
+    }
+    
+    });
           
-          
+             
      
 
          
@@ -371,12 +391,7 @@ $idproyecto = $_GET["id"];
         }
 
         
-$(document).ready(function(){
-  $('body capD').on('click', 'input', function(){
-    alert($(this).attr('id'))
-  })
-})
-        
+
         
         
         /*
@@ -408,19 +423,12 @@ function nuevCapa(capa){
         
     insideDiv.onclick=function f(insideDiv){
         
-        if(document.getElementById("check:"+this.id.split(":")[1])!=null && document.getElementById("check:"+this.id.split(":")[1]).checked==true){ 
+        if(document.getElementById("check:"+this.id.split(":")[1])!=null){ 
+                document.getElementById("check:"+this.id.split(":")[1]).checked=true;
+                muestraCapa(true,this.id);
+                
+            }         
             
-               
-                eliminaActive("active");
-                this.className += " active";     
-                aux=parseInt(this.id.split(":")[1]);
-            
-            }
-        else{
-            
-            
-            
-        }
     };
         
 
@@ -434,7 +442,7 @@ function nuevCapa(capa){
 
     var checkedNuevo = document.createElement('input');
         checkedNuevo.type="checkbox";
-        checkedNuevo.value = "Capa "+capas.length;
+        checkedNuevo.value = "Capa";
         checkedNuevo.id="check:"+idAux;
         checkedNuevo.checked=true;
         checkedNuevo.setAttribute("onclick","muestraCapa(this.checked,this.id)")
@@ -513,7 +521,10 @@ insideDiv.appendChild(elementoCapa);
                     
                 }
                 
-            }}
+            }
+            event.stopPropagation();
+            
+            }
             
             var iElimina = document.createElement("i");
                 iElimina.className = "far fa-trash-alt";
@@ -541,7 +552,8 @@ insideDiv.appendChild(elementoCapa);
                       type: "POST",
                       url: "modifcarcapadb.php"
                     });
-                    
+                    event.stopPropagation();
+            
                 }
             var iCambiaNom = document.createElement("i");
                 iCambiaNom.className = "far fa-edit";
@@ -586,46 +598,69 @@ function muestraCapa(check, nom){
 
     var x= nom.split(":")[1];
     if (check==true){
+        
         aux = parseInt(x);
+        
+        eliminaActive("active"); 
+        document.getElementById("cap:"+aux).className+=" active";
+        if (document.getElementById("lista:"+aux).style.display=="none"){
+            document.getElementById("lista:"+aux).style.display="block";
+        }
+        
+        if (capas[x]!=null && capas[x][0].length!=0){
+            if (capas[x][0][0].getVisible()==false){
+        
+                activar(check,x);
+            
+            }
+          }
+    
     }
     else{
+        activar(check,x);
+        if (capas[x][0].length!=1){
+    
+               document.getElementById("lista:"+x).style.display="none";
+             
+                 
          if (x==aux){
-        for (var d=0;  d<Object.keys(capas).length; d++ ){
-            if (Object.keys(capas)[d]==x){
-                for (var j=d; j<Object.keys(capas).length;j++){
+                
+        for (var d=0;  d<Object.keys(capas).length; d++ ){ //recorre todas las id de las capas creadas
+            if (Object.keys(capas)[d]==x){ // para determinar a partir de dónde se buscarán capas activas
+                 
+                for (var j=d+1; j<Object.keys(capas).length+1;j++){ //segundo For para realizar la busqueda
                     
-                    if (Object.keys(capas)[j+1]!=null){
-                        if (document.getElementById("check:"+Object.keys(capas)[j+1]).checked==true)
+                    if (Object.keys(capas)[j]!=null){ //queremos saber si NO estamos en la última posición
+                        if (document.getElementById("check:"+Object.keys(capas)[j]).checked==true) //y si en esa siguiente posición esta activa la capa
                         {
-                            aux=parseInt(Object.keys(capas)[j+1]);
-                            eliminaActive("active");
-                            document.getElementById("cap:"+aux).className+=" active";
-                        
-                            break;}
+                            muestraCapa(true,"cap:"+Object.keys(capas)[j]);
+                            
+                            break;
+                        }
+                        if (j==d){ //recorrió todo el vector y no hay ninguno más que esté activo, así que pone por defecto la primer capa, pero la deja en     //modo desactivado hasta que un marcador sea lanzado ( en ese caso se activa la capa)
+                            aux=Object.keys(capas)[0];
+                            d=Object.keys(capas).length;
+                            eliminaActive("active"); 
+                            break;
+                            
+                            
+                        }
                         
                     }
-                    else{
-                        
-                        aux=Object.keys(capas)[0];
-                        activar(true,aux);
-                        eliminaActive("active");
-                        document.getElementById("cap:"+aux).className+=" active";
-                        
-                        d=Object.keys(capas).length;
-                        
-                        break;
-                                                
-
+                    else{ //si es null el siguiente, volvemos a recorrer el vector hasta que llegue a ser j=d ( en ese caso ocurre otro evento)
+                        j=-1;
+                       
                     }
                 }
+                
             }
             
-         }}}
-    if (capas[x]!=null){
-       activar(check,x);
-    }
-        
-    }
+         }}}    }
+    
+  
+    event.stopPropagation();
+
+}
     
 function activar(valor,capaN){
     for(i=0; i<3;i++){

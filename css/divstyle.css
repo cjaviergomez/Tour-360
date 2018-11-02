@@ -1,0 +1,86 @@
+div#global{
+	width: 100%;
+	height: 100%;
+	background-color:  #4EB8DD;
+	
+}
+
+div#galeria{
+	float: right;   /* Se alinea a la derecha el div de la galeria */
+	width: 25%;
+	height: 100%;
+	background-color: #FFFFFF;
+
+}
+div#boton{
+	width: 100%;
+	height: 6%;
+}
+
+div#visor{
+	width: 75%;
+	height: 50%;
+	background-image: url(../img/fondovisor.png);
+	background-size: 50% 75%;
+	background-repeat: no-repeat;
+	background-position: center;
+
+}
+
+div#flecha{
+	width: 75%;
+	height: 40%;
+	background-image: url(../img/flechafon.png);
+	background-size: 20% 30%;
+	background-repeat: no-repeat;
+	position: absolute;
+	background-position-x: 80%;
+	background-position-y: 82%;
+	animation: moverflecha 3s;
+	animation-delay: 2s;
+	animation-iteration-count: 10; /* Número de iteraciones */
+
+}
+@keyframes moverflecha{
+	from{
+	background-position-x: 80%;
+	background-position-y: 82%;
+	}
+	to{
+		background-position-x: 100%;
+		background-position-y: 20%;
+	}
+}
+
+div#contenedormapa{
+	width: 75%;
+	height: 50%;
+}
+
+ div#map{
+ 	position:relative; 
+ 	height: 100%;
+ 	width: 100%;
+ }
+
+ div#Layer1{
+ 	position:relative; 
+ 	background-color: #FFFFFF; 
+ 	background-image: url(../img/galeria.png);
+ 	background-size: 75% 40%;
+	background-repeat: no-repeat;
+	background-position: center;
+ 	height: 94%;
+ }
+ div#scroll{
+ 	width:100%; 
+ 	height:100%; 
+ 	overflow-y: auto; 
+ 	position:relative;
+ }
+
+  div#panorama {
+        width: 100%;
+        height: 100%;
+        
+    }

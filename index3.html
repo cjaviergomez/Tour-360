@@ -1,93 +1,23 @@
-
-
 <!DOCTYPE html>
 <html>
 <head>
      
-    <title>Tour 360 | Login </title>
-    <meta charset="utf-8"> 
-
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="Hair salon templates for mens hair cut service provider.">
-    <meta name="keywords" content="hair salon website templates free download, html5 template, free responsive website templates, website layout,html5 website templates, template for website design, beauty HTML5 templates, cosmetics website templates free download">
- 
-
-
-
-    <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i%7cMontserrat:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link href="css/font-awesome.min.css" rel="stylesheet">
-    <!-- Style -->
-    <link href="css/style.css" rel="stylesheet">
-
-
-
-        <link rel="stylesheet" href="css/login.css">
-    <link rel="shorcut icon" href="img/logo1.png">
-    <link rel="stylesheet" href="css/normalize.css">
-
-    <link href="css/StyleSheet.css" type="text/css" rel="stylesheet">
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
-
-    <link href='http://fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="css/font-awesome.min.css">
-    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-    <link rel="stylesheet" href="css/animate.css">
-    <link rel="stylesheet" href="css/responsiveslides.css">
-    <script src="js/responsiveslides.js"></script>  
-    <link rel="stylesheet" href="css/default.css">
-     <link rel="stylesheet" href="css/modal.css">
- 
-
-    <script src="js/smooth-scroll.min.js"></script>
-
-    <script>
-
-        var scroll = new SmoothScroll('a[href*="#"]', {
-    // Selectors
-    ignore: '[data-scroll-ignore]', // Selector for links to ignore (must be a valid CSS selector)
-    header: null, // Selector for fixed headers (must be a valid CSS selector)
-
-    // Speed & Easing
-    speed: 700, // Integer. How fast to complete the scroll in milliseconds
-    offset: 0, // Integer or Function returning an integer. How far to offset the scrolling anchor location in pixels
-    easing: 'easeInOutCubic', // Easing pattern to use
-    customEasing: function (time) {}, // Function. Custom easing pattern
-
-    // Callback API
-    before: function () {}, // Callback to run before scroll
-    after: function () {} // Callback to run after scroll
-     });
-        
-
-
-    </script>
-
-
+  <title>Tour 360 | Login </title>
+  <meta charset="UTF-8">
+  <title>Tour 360 | Login </title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+  <link rel="shorcut icon" href="img/logoGeomatica.png"> <!--Logo de la página -->
+  <link href="css/botonmodal.css" rel="stylesheet"> <!--Estilos de los botones del modal -->
     
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i%7cMontserrat:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"> <!-- Estilo de la página en general ¡IMPORTANTE!-->
+   
+  <link href="css/fuentePrincipal.css" rel="stylesheet"> <!--Implementación de una fuente de google para el texto de la página -->
+  <link rel="stylesheet" href="css/style.css">  <!--Estilo de la página en general, tanto del formulario como demás cosas --> 
 
-
-    
-    <!--[if IE]>
-        <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->  
-
-    <script>
-        $(document).ready(function(){
-            $("#slider-home").responsiveSlides({    
-                speed:500,      
-                nav: true,
-                namespace: 'slid-btns',
-                titleAnimation: 'bounceIn'
-            });
-        });
-    </script>
+   <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script> <!--Libreria para implementar el modal -->
 </head>
 <body>
 
@@ -191,94 +121,18 @@
     </div>
     <div class="inputGroup inputGroup2">
         <label for="password">Password</label>
-        <input type="password" id="password" class="password" name = "password" />
+        <input type="password" id="password" class="password" name = "password" autocomplete="off" />
     </div>
     <div class="inputGroup inputGroup3">
         <button id="login">Iniciar</button>
     </div>  
 </form>
-<!-- BEGIN # BOOTSNIP INFO -->
-
-<!-- END # BOOTSNIP INFO -->
-
-<!-- BEGIN # MODAL LOGIN -->
-<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header" align="center">
-                <br><br><br><br><br><br>
-                    <img class="img-rounded" id="img_logo" src="img/logo3.png">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                    </button>
-                </div>
-                
-                <!-- Begin # DIV Form -->
-                <div id="div-forms">
-                
-                    <!-- Begin # Login Form -->
-                    <form action="validar_usuario.php" METHOD=POST id="login-form">
-
-                        <div class="modal-body">
-
-                            
-                                            
-
-                            <input id="usuario" class="form-control" type="text" name="usuario" placeholder="Usuario" required>
-                            <input id="clave" class="form-control" type="password"  name="clave" placeholder="contraseña" required>
-       
-                        </div>
-
-                        <div class="modal-footer">
-                            <div>
-                                <button type="submit" class="btn btn-primary btn-lg btn-block">Iniciar</button>
-                            </div>
-                            <br>
-                            <div>
-                                <button id="login_lost_btn" type="button" class="btn-link" >¿Olvidaste tu contraseña?</button>
-                                <button id="login_register_btn" type="button" class="btn-link"></button>
-                            </div>
-                        </div>
-
-                    </form>
-                    <!-- End # Login Form -->
-                    
-                    <!-- Begin | Lost Password Form -->
-                    <form id="lost-form" style="display:none;">
-                        <div class="modal-body">
-
-                            <input id="lost_email" class="form-control" type="text" placeholder="E-Mail" required>
-                        </div>
-                        <div class="modal-footer">
-                            <div>
-                                <button type="submit" class="btn btn-primary btn-lg btn-block">Enviar</button>
-                            </div>
-                            <br>
-                            <div>
-                                <button id="lost_login_btn" type="button" class="btn-link">Iniciar Sesión</button>
-                                <button id="lost_register_btn" type="button" class="btn-link"></button>
-                            </div>
-                        </div>
-                    </form>
-                    <!-- End | Lost Password Form -->
-                    
-                    <!-- Begin | Register Form -->
-
-                    <!-- End | Register Form -->
-                    
-                </div>
-                <!-- End # DIV Form -->
-                
-            </div>
-        </div>
-    </div>
-    <!-- END # MODAL LOGIN -->
 
 
 <!-- aqui pusimos el modal!!!!!!!!!!!!!!!!!!!!!!!!!!!!111111 -->
 
-       <div class="form-group">
-      <div class="col-sm-6">
+<div class="form-group">
+ <div class="col-sm-6">
 
 
 <!-- Modal -->
@@ -291,62 +145,33 @@
         <h4 class="modal-title" id="myModalLabel">Opps! Parece que no has iniciado sesión</h4>
       </div>
       <div class="modal-body">
-       Puedes volver a intentarlo.
+       Incia sesión y vuelve a intentarlo.
       </div>
       <div class="modal-footer">
-     <a href="index.html"> <button type="button" class="boton_personalizado" >Intentarlo de nuevo</button> </a>
+     <a href="index.php"> <button type="button" class="boton_personalizado" >Iniciar sesión</button> </a>
         
       </div>
     </div>
   </div>
 </div>
-      </div>
-
-
-
-    </div>
-
-
-
-
-
- 
-
-
-
-
- 
-
-
-
+</div>
+</div>
 <script type="text/javascript" src="js/login.js" ></script>
 
+<script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js'></script><!--Libreria para animacion del formulario -->
+<script  src="js/index.js"></script> <!--Implementación de la libreria anterior -->
+<!-- /.footer-->
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) 
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="js/bootstrap.min.js"></script>
 
-
-   <!-- /.footer-->
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) 
-
-    <script src="js/jquery.min.js"></script> -->
-    
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/menumaker.js"></script>
     <!-- sticky header -->
-    <script src="js/jquery.sticky.js"></script>
-    <script src="js/sticky-header.js"></script>
-
-    <script type="text/javascript">
+<script src="js/jquery.sticky.js"></script> <!--Libreria de jquery para lanzar el modal -->
+<script type="text/javascript">             
     $(window).on('load',function(){
         $('#myModal2').modal('show');
     });
-</script>
+</script> <!--Implementación de sticky para lanzar el modal -->
 
 </body>
-<script src="bootstrap-modal.js"></script>
-
-
-<script type="text/javascript" src="js/wow.min.js"></script>
-<script>    
-  new WOW().init();    
-</script>
 </html>

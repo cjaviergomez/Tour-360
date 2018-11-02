@@ -1,0 +1,16 @@
+.boton_personalizado{ /* Etilo del boton de 'intentarlo de nuevo' de el modal*/
+    text-decoration: none;
+    padding: 10px;
+    font-weight: 600;
+    font-size: 20px;
+    color: #ffffff;
+    background-color: #4EB8DD;
+    border-radius: 6px;
+    border: 2px solid #2186C0;
+    
+  }
+  .boton_personalizado:hover{
+    color: #4EB8DD;
+    background-color: #ffffff;
+  }
+  

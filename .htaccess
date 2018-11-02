@@ -1,0 +1,9 @@
+Options All -Indexes
+<IfModule mod_headers.c> 
+  Header set X-XSS-Protection "1; mode=block" 
+  Header set X-Content-Type-Options "nosniff"
+</IfModule>
+
+<IfModule php5_module>
+    php_flag session.cookie_httponly on
+</IfModule>
